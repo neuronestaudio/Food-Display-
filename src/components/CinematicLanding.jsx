@@ -6,6 +6,7 @@ import FrameSequence from './FrameSequence'
 import Chapter from './Chapter'
 import ChapterIndicator from './ChapterIndicator'
 import IntroVeil from './IntroVeil'
+import OutroFade from './OutroFade'
 
 // Five pastries, each its own readable "page". `index` ties the copy to its
 // pastry's read band in src/lib/timeline.js; between bands the canvas
@@ -121,6 +122,9 @@ export default function CinematicLanding() {
 
         {/* Opening veil — sits above everything, then rises away on scroll */}
         <IntroVeil progressRef={progressRef} />
+
+        {/* Closing fade — the last pastry dissolves into the outro background */}
+        <OutroFade progressRef={progressRef} />
       </section>
 
       {/* Outro */}

@@ -10,7 +10,7 @@ export const SEGMENTS = [
   { id: 'berry-tart', dir: 'p2', count: 30 },
   { id: 'chocolate', dir: 'p3', count: 30 },
   { id: 'pistachio', dir: 'p4', count: 28 },
-  { id: 'lemon', dir: 'p5', count: 20 },
+  { id: 'lemon', dir: 'p5', count: 19 },
 ]
 
 export const N = SEGMENTS.length
