@@ -18,12 +18,15 @@ export const N = SEGMENTS.length
 // Scroll-progress width of each pastry→pastry crossfade (kept short so the fade
 // feels deliberate, not sluggish) and the readable hold each pastry gets.
 export const DISSOLVE = 0.045
-export const READ = (1 - (N - 1) * DISSOLVE) / N
+// LEAD holds the first pastry static at the very top while the intro veil lifts
+// off it — so the unveil and the start of the sequence are one continuous move.
+export const LEAD = 0.06
+export const READ = (1 - LEAD - (N - 1) * DISSOLVE) / N
 
 // Read band [start,end] per pastry, in scroll progress 0..1.
 export const BANDS = (() => {
   const bands = []
-  let cursor = 0
+  let cursor = LEAD
   for (let i = 0; i < N; i++) {
     const start = cursor
     const end = start + READ

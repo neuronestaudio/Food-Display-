@@ -5,6 +5,7 @@ import { initSmoothScroll } from '../lib/smoothScroll'
 import FrameSequence from './FrameSequence'
 import Chapter from './Chapter'
 import ChapterIndicator from './ChapterIndicator'
+import IntroVeil from './IntroVeil'
 
 // Five pastries, each its own readable "page". `index` ties the copy to its
 // pastry's read band in src/lib/timeline.js; between bands the canvas
@@ -90,31 +91,8 @@ export default function CinematicLanding() {
 
   return (
     <div ref={rootRef}>
-      {/* Intro */}
-      <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-50"
-          style={{ backgroundImage: 'url(/frames/p1/f001.jpg)' }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#f6efe4]/65 via-[#f4ecdf]/55 to-[#f1e8da]" />
-        <div className="relative flex flex-col items-center">
-          <p className="text-[11px] tracking-[0.55em] uppercase text-[#a06a3c] mb-7">
-            Pâtisserie Fine
-          </p>
-          <h1 className="font-[Fraunces] text-6xl md:text-9xl font-light text-center text-balance max-w-4xl px-6 leading-[1.0] text-[#2c2118]">
-            La Villa
-          </h1>
-          <p className="mt-8 max-w-md text-center text-[#5a4a3b] text-sm md:text-base leading-relaxed px-6">
-            Five creations, turned slowly in the morning light — each one made
-            by hand, each one worth lingering over.
-          </p>
-          <p className="mt-14 text-[11px] tracking-[0.35em] uppercase text-[#7a6650] animate-pulse">
-            Scroll to begin
-          </p>
-        </div>
-      </section>
-
-      {/* Pinned showcase */}
+      {/* Pinned showcase — opens on the gradient veil, which lifts to unveil the
+          first pastry and flows straight into the crossfade sequence. */}
       <section ref={pinRef} className="h-screen w-full relative overflow-hidden">
         <FrameSequence ref={frameRef} progressRef={progressRef} />
 
@@ -140,6 +118,9 @@ export default function CinematicLanding() {
           <Chapter key={c.id} chapter={c} />
         ))}
         <ChapterIndicator chapters={chapters} progressRef={progressRef} />
+
+        {/* Opening veil — sits above everything, then rises away on scroll */}
+        <IntroVeil progressRef={progressRef} />
       </section>
 
       {/* Outro */}
