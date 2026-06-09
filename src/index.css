@@ -42,19 +42,31 @@
 /* White content bubble — pops in with a soft overshoot when its pastry settles,
    pops back out as it dissolves to the next. Transform/opacity only (GPU). */
 .bubble {
-  background: #fffdf9;
-  border: 1px solid #efe3d2;
+  /* lightly frosted glass: the pastry shows clearly through, a strong blur +
+     a light halo on the text keep it readable even over the dark chocolate */
+  background: rgba(255, 252, 246, 0.28);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 26px;
   padding: 2.1rem 2.2rem;
   box-shadow:
-    0 26px 64px -14px rgba(74, 52, 32, 0.38),
-    0 6px 18px -8px rgba(74, 52, 32, 0.22);
+    0 26px 64px -16px rgba(74, 52, 32, 0.3),
+    0 6px 18px -8px rgba(74, 52, 32, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
   opacity: 0;
   transform: translateY(40px) scale(0.88);
   transition:
     opacity 0.5s ease,
     transform 0.75s cubic-bezier(0.34, 1.5, 0.5, 1);
   will-change: opacity, transform;
+}
+
+/* soft light halo so the dark text lifts off whatever shows through the glass */
+.bubble h2,
+.bubble p,
+.bubble span {
+  text-shadow: 0 1px 14px rgba(253, 248, 241, 0.7);
 }
 
 @media (min-width: 768px) {
