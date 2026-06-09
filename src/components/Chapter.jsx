@@ -49,30 +49,30 @@ export default function Chapter({ chapter }) {
 
   return (
     <div
-      className={`absolute z-30 left-1/2 -translate-x-1/2 top-[5%] w-[min(93vw,33rem)] md:top-1/2 md:translate-x-0 md:-translate-y-1/2 md:w-[clamp(21rem,30vw,26rem)] ${desktopSide}`}
+      className={`absolute z-30 left-1/2 -translate-x-1/2 top-[4%] w-[min(82vw,23rem)] md:top-1/2 md:translate-x-0 md:-translate-y-1/2 md:w-[clamp(21rem,30vw,26rem)] ${desktopSide}`}
     >
       <div ref={cardRef} className="bubble">
         <div ref={parRef} className="will-change-transform">
-          <div className="flex items-center gap-3 mb-5">
-            <span className="h-2 w-2 rounded-full bg-[#c08a52]" />
-            <p className="text-[13px] tracking-[0.28em] uppercase text-[#a06a3c] font-semibold">
+          <div className="flex items-center gap-2.5 md:gap-3 mb-2 md:mb-5">
+            <span className="h-1.5 w-1.5 md:h-2 md:w-2 rounded-full bg-[#c08a52]" />
+            <p className="text-[10px] md:text-[13px] tracking-[0.24em] md:tracking-[0.28em] uppercase text-[#a06a3c] font-semibold">
               {chapter.kicker}
             </p>
           </div>
 
-          <h2 className="font-[Fraunces] text-[2.4rem] md:text-[3rem] font-semibold leading-[1.02] tracking-[-0.015em] text-[#251c14] text-balance">
+          <h2 className="font-[Fraunces] text-[1.45rem] md:text-[3rem] font-semibold leading-[1.05] md:leading-[1.02] tracking-[-0.01em] text-[#251c14] text-balance">
             {chapter.title}
           </h2>
 
-          <p className="mt-4 text-[17px] md:text-[18px] leading-[1.55] text-[#4a3b2e]">
+          <p className="mt-2 md:mt-4 text-[12px] md:text-[18px] leading-[1.4] md:leading-[1.55] text-[#4a3b2e]">
             {chapter.body}
           </p>
 
-          <div className="mt-6 flex items-center justify-between border-t border-[#ead9c4] pt-5">
-            <span className="text-[13px] tracking-[0.22em] uppercase text-[#8a7762] font-medium">
+          <div className="mt-2.5 md:mt-6 flex items-center justify-between border-t border-[#ead9c4] pt-2.5 md:pt-5">
+            <span className="text-[9.5px] md:text-[13px] tracking-[0.2em] md:tracking-[0.22em] uppercase text-[#8a7762] font-medium">
               La Villa
             </span>
-            <span className="font-[Fraunces] text-[1.7rem] font-semibold text-[#7a5230]">
+            <span className="font-[Fraunces] text-[1.1rem] md:text-[1.7rem] font-semibold text-[#7a5230]">
               {chapter.price}
             </span>
           </div>
