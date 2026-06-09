@@ -1,25 +1,37 @@
 import { useRef, useLayoutEffect } from 'react'
-import { gsap } from 'gsap'
 import { BANDS } from '../lib/timeline'
 
-// Each chapter is tied to its pastry's read band: full opacity across the whole
-// band (so you can stop and read), easing out only as the dissolve begins.
-const EDGE = 0.03
+const clamp01 = (x) => Math.min(1, Math.max(0, x))
 
+// A white "content bubble" per pastry. It pops in (overshoot ease via CSS) once
+// the pastry has settled in its read band, drifts gently with the scroll for
+// depth, then pops out as the dissolve to the next pastry begins — so the cards
+// animate in and out between each item.
 export default function Chapter({ chapter }) {
-  const elRef = useRef(null)
+  const cardRef = useRef(null)
+  const parRef = useRef(null)
+  const activeRef = useRef(false)
   const band = BANDS[chapter.index]
 
   useLayoutEffect(() => {
     let raf
+    // sit just inside the band so the card appears after the incoming dissolve
+    // lands and leaves before the outgoing one starts
+    const inEdge = band.start + 0.012
+    const outEdge = band.end - 0.012
+    const span = band.end - band.start
+
     const tick = () => {
       const p = chapter.progressRef.current
-      const inFromStart = (p - (band.start - EDGE)) / EDGE
-      const inToEnd = (band.end + EDGE - p) / EDGE
-      const opacity = gsap.utils.clamp(0, 1, Math.min(inFromStart, inToEnd))
-      if (elRef.current) {
-        elRef.current.style.opacity = opacity
-        elRef.current.style.transform = `translateY(${(1 - opacity) * 24}px)`
+      const active = p >= inEdge && p <= outEdge
+      if (active !== activeRef.current) {
+        activeRef.current = active
+        cardRef.current?.classList.toggle('bubble-in', active)
+      }
+      // subtle parallax: the card content drifts up as you scroll the band
+      if (parRef.current) {
+        const local = clamp01((p - band.start) / span)
+        parRef.current.style.transform = `translateY(${(local - 0.5) * -20}px)`
       }
       raf = requestAnimationFrame(tick)
     }
@@ -27,46 +39,42 @@ export default function Chapter({ chapter }) {
     return () => cancelAnimationFrame(raf)
   }, [chapter, band])
 
-  const alignClass =
+  const sideClass =
     chapter.align === 'right'
-      ? 'items-end text-right right-[6%] md:right-[8%]'
-      : 'items-start text-left left-[6%] md:left-[8%]'
+      ? 'right-[6%] md:right-[9%]'
+      : 'left-[6%] md:left-[9%]'
 
   return (
     <div
-      ref={elRef}
-      className={`absolute top-1/2 -translate-y-1/2 ${alignClass} max-w-sm flex flex-col gap-4 will-change-[opacity,transform]`}
-      style={{ opacity: 0 }}
+      className={`absolute top-1/2 -translate-y-1/2 ${sideClass} z-30 w-[clamp(17rem,27vw,21.5rem)]`}
     >
-      <div className="flex items-center gap-3">
-        {chapter.align !== 'right' && (
-          <span className="h-px w-8 bg-[#b07d4e]/70" />
-        )}
-        <p className="text-[11px] tracking-[0.4em] uppercase text-[#a06a3c]">
-          {chapter.kicker}
-        </p>
-        {chapter.align === 'right' && (
-          <span className="h-px w-8 bg-[#b07d4e]/70" />
-        )}
+      <div ref={cardRef} className="bubble">
+        <div ref={parRef} className="will-change-transform">
+          <div className="flex items-center gap-2.5 mb-4">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#c08a52]" />
+            <p className="text-[10.5px] tracking-[0.34em] uppercase text-[#a06a3c]">
+              {chapter.kicker}
+            </p>
+          </div>
+
+          <h2 className="font-[Fraunces] text-[1.7rem] md:text-[2.05rem] font-light leading-[1.08] text-[#2c2118] text-balance">
+            {chapter.title}
+          </h2>
+
+          <p className="mt-3.5 text-[13.5px] leading-relaxed text-[#5d4c3e]">
+            {chapter.body}
+          </p>
+
+          <div className="mt-5 flex items-center justify-between border-t border-[#ece0cf] pt-4">
+            <span className="text-[10.5px] tracking-[0.28em] uppercase text-[#9a8a76]">
+              La Villa
+            </span>
+            <span className="font-[Fraunces] text-lg text-[#7a5230]">
+              {chapter.price}
+            </span>
+          </div>
+        </div>
       </div>
-
-      <h2
-        className="font-[Fraunces] text-3xl md:text-5xl font-light text-balance leading-[1.08] text-[#33271d]"
-        style={{ textShadow: '0 1px 18px rgba(247,240,229,0.7)' }}
-      >
-        {chapter.title}
-      </h2>
-
-      <p
-        className="text-[#4f4034] text-sm md:text-[15px] leading-relaxed max-w-xs"
-        style={{ textShadow: '0 1px 14px rgba(247,240,229,0.8)' }}
-      >
-        {chapter.body}
-      </p>
-
-      <p className="mt-1 font-[Fraunces] text-lg text-[#7a5230]">
-        {chapter.price}
-      </p>
     </div>
   )
 }

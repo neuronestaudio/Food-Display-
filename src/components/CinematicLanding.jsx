@@ -18,7 +18,7 @@ const CHAPTERS = [
     kicker: '01 — Choux',
     title: 'Paris-Brest',
     body: 'Airy choux piped full of hazelnut praline cream, crowned with caramelised hazelnuts and a single dark cherry. A wheel of pastry, the way Paris has made it since 1910.',
-    price: '— 9 €',
+    price: '9 €',
   },
   {
     id: 1,
@@ -27,7 +27,7 @@ const CHAPTERS = [
     kicker: '02 — Tarte',
     title: 'Tarte aux Fruits Rouges',
     body: 'A crisp pâte sucrée shell, vanilla-bean crème pâtissière, and a quiet riot of strawberries, raspberries and blueberries picked at their reddest.',
-    price: '— 8 €',
+    price: '8 €',
   },
   {
     id: 2,
@@ -36,7 +36,7 @@ const CHAPTERS = [
     kicker: '03 — Entremet',
     title: "L'Entremet Chocolat",
     body: 'Layered dark-chocolate mousse over a thin sablé base, finished in a mirror glaze so clean it doubles the room — and a curl of tempered chocolate on top.',
-    price: '— 10 €',
+    price: '10 €',
   },
   {
     id: 3,
@@ -45,7 +45,7 @@ const CHAPTERS = [
     kicker: '04 — Pistache',
     title: 'Tarte Pistache-Framboise',
     body: 'Sicilian pistachio cream under a ring of fresh raspberries, scattered with crushed pistachio. Sweet, green, and just sharp enough to keep you honest.',
-    price: '— 9 €',
+    price: '9 €',
   },
   {
     id: 4,
@@ -54,7 +54,7 @@ const CHAPTERS = [
     kicker: '05 — Citron',
     title: 'Tarte au Citron Meringuée',
     body: 'Bright lemon curd in a buttery shell, hidden beneath peaks of Italian meringue torched to a slow gold. The last word of the counter, and usually the first to sell out.',
-    price: '— 8 €',
+    price: '8 €',
   },
 ]
 

@@ -39,6 +39,28 @@
   }
 }
 
+/* White content bubble — pops in with a soft overshoot when its pastry settles,
+   pops back out as it dissolves to the next. Transform/opacity only (GPU). */
+.bubble {
+  background: #fffdf9;
+  border: 1px solid #efe3d2;
+  border-radius: 22px;
+  padding: 1.6rem 1.7rem;
+  box-shadow:
+    0 22px 55px -14px rgba(74, 52, 32, 0.34),
+    0 5px 16px -8px rgba(74, 52, 32, 0.2);
+  opacity: 0;
+  transform: translateY(34px) scale(0.9);
+  transition:
+    opacity 0.5s ease,
+    transform 0.7s cubic-bezier(0.34, 1.45, 0.5, 1);
+  will-change: opacity, transform;
+}
+.bubble.bubble-in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
 /* Fine film grain — fixed, very subtle, sits above everything */
 body::after {
   content: '';
