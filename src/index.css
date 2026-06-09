@@ -44,17 +44,23 @@
 .bubble {
   background: #fffdf9;
   border: 1px solid #efe3d2;
-  border-radius: 22px;
-  padding: 1.6rem 1.7rem;
+  border-radius: 26px;
+  padding: 2.1rem 2.2rem;
   box-shadow:
-    0 22px 55px -14px rgba(74, 52, 32, 0.34),
-    0 5px 16px -8px rgba(74, 52, 32, 0.2);
+    0 26px 64px -14px rgba(74, 52, 32, 0.38),
+    0 6px 18px -8px rgba(74, 52, 32, 0.22);
   opacity: 0;
-  transform: translateY(34px) scale(0.9);
+  transform: translateY(40px) scale(0.88);
   transition:
     opacity 0.5s ease,
-    transform 0.7s cubic-bezier(0.34, 1.45, 0.5, 1);
+    transform 0.75s cubic-bezier(0.34, 1.5, 0.5, 1);
   will-change: opacity, transform;
+}
+
+@media (min-width: 768px) {
+  .bubble {
+    padding: 2.3rem 2.4rem;
+  }
 }
 .bubble.bubble-in {
   opacity: 1;
