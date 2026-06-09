@@ -49,7 +49,7 @@ export default function Chapter({ chapter }) {
 
   return (
     <div
-      className={`absolute z-30 left-1/2 -translate-x-1/2 bottom-[4%] w-[min(93vw,33rem)] md:bottom-auto md:top-1/2 md:translate-x-0 md:-translate-y-1/2 md:w-[clamp(21rem,30vw,26rem)] ${desktopSide}`}
+      className={`absolute z-30 left-1/2 -translate-x-1/2 top-[5%] w-[min(93vw,33rem)] md:top-1/2 md:translate-x-0 md:-translate-y-1/2 md:w-[clamp(21rem,30vw,26rem)] ${desktopSide}`}
     >
       <div ref={cardRef} className="bubble">
         <div ref={parRef} className="will-change-transform">
