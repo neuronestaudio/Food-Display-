@@ -28,7 +28,7 @@ export default function ChapterIndicator({ chapters, progressRef }) {
   }, [chapters, progressRef])
 
   return (
-    <div className="absolute right-7 top-1/2 -translate-y-1/2 flex flex-col gap-4">
+    <div className="absolute right-7 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-4">
       {chapters.map((c, i) => (
         <div
           key={c.id}

@@ -17,7 +17,7 @@ export const N = SEGMENTS.length
 
 // Scroll-progress width of each pastry→pastry crossfade (kept short so the fade
 // feels deliberate, not sluggish) and the readable hold each pastry gets.
-export const DISSOLVE = 0.045
+export const DISSOLVE = 0.07
 // LEAD holds the first pastry static at the very top while the intro veil lifts
 // off it — so the unveil and the start of the sequence are one continuous move.
 export const LEAD = 0.06

@@ -39,14 +39,17 @@ export default function Chapter({ chapter }) {
     return () => cancelAnimationFrame(raf)
   }, [chapter, band])
 
-  const sideClass =
+  // Mobile: a bottom-centred sheet that clears the centred pastry above it.
+  // Desktop: anchored to the outer edge, vertically centred, in the side
+  // negative space so it never overlaps the subject.
+  const desktopSide =
     chapter.align === 'right'
-      ? 'right-[6%] md:right-[9%]'
-      : 'left-[6%] md:left-[9%]'
+      ? 'md:left-auto md:right-[3.5%]'
+      : 'md:right-auto md:left-[4.5%]'
 
   return (
     <div
-      className={`absolute top-1/2 -translate-y-1/2 ${sideClass} z-30 w-[clamp(17rem,27vw,21.5rem)]`}
+      className={`absolute z-30 left-1/2 -translate-x-1/2 bottom-[4.5%] w-[min(90vw,29rem)] md:bottom-auto md:top-1/2 md:translate-x-0 md:-translate-y-1/2 md:w-[clamp(15.5rem,23vw,19.5rem)] ${desktopSide}`}
     >
       <div ref={cardRef} className="bubble">
         <div ref={parRef} className="will-change-transform">
