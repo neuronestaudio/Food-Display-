@@ -97,6 +97,16 @@ export default function CinematicLanding() {
       <section ref={pinRef} className="h-screen w-full relative overflow-hidden">
         <FrameSequence ref={frameRef} progressRef={progressRef} />
 
+        {/* giant transparent brand watermark sitting behind the scene */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+          <span
+            className="font-[Fraunces] font-semibold uppercase whitespace-nowrap leading-none select-none text-[#2c2118]"
+            style={{ fontSize: 'min(28vw, 34vh)', letterSpacing: '0.02em', opacity: 0.16 }}
+          >
+            La&nbsp;Villa
+          </span>
+        </div>
+
         {/* soft warm vignette for depth + text legibility on a light scene */}
         <div
           className="absolute inset-0 pointer-events-none"
